@@ -1,0 +1,18 @@
+# Specify Docker Compose Version
+version: '3'
+
+# What do we want to do
+
+# Service is like a container, more like a type of container. not a specific container
+
+services:
+  redis-server:
+    image: 'redis' # specify the image
+
+  node-app:
+    # restart policy to restart container if crashes
+    restart: always
+    # Instead of specifying the image as we did for redis, we can use the build command to look inside the current directory and look for the dockerfile in there.
+    build: .
+    ports: # Map the ports, the '-' is used to indicate an array, if we are mapping to multiple ports
+      - "8080:8080" # local port : container : port
